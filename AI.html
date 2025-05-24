@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI-Powered Password Assistant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    input {
+      width: 300px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .suggestion {
+      margin-top: 5px;
+      font-style: italic;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔐 AI-Powered Password Assistant</h2>
+  <p>Enter a password and get real-time feedback + AI-powered suggestions:</p>
+
+  <input type="password" id="passwordInput" placeholder="Enter your password..." />
+  <div class="feedback" id="strengthFeedback"></div>
+  <div class="suggestion" id="aiSuggestion"></div>
+
+  <script>
+    const commonPasswords = ['123456', 'password', '12345678', 'qwerty', 'abc123'];
+
+    function evaluatePassword(password) {
+      let strength = 'Weak';
+      let score = 0;
+
+      if (password.length > 7) score++;
+      if (/[A-Z]/.test(password)) score++;
+      if (/[0-9]/.test(password)) score++;
+      if (/[^A-Za-z0-9]/.test(password)) score++;
+      if (password.length > 12) score++;
+
+      if (score >= 4) strength = 'Strong';
+      else if (score >= 2) strength = 'Medium';
+
+      return strength;
+    }
+
+    function aiSuggestion(password) {
+      if (commonPasswords.includes(password.toLowerCase())) {
+        return "This is a very common password. Try something unique, like a phrase.";
+      }
+      if (password.length < 8) {
+        return "Try adding more characters — at least 12 is safer!";
+      }
+      if (!/[A-Z]/.test(password)) {
+        return "Consider adding a capital letter for strength.";
+      }
+      if (!/[^A-Za-z0-9]/.test(password)) {
+        return "Add a special character like ! or @ to improve it.";
+      }
+      return "Looks good! You can make it even stronger with a passphrase like: My!Secure$Vault2025";
+    }
+
+    const passwordInput = document.getElementById('passwordInput');
+    const feedback = document.getElementById('strengthFeedback');
+    const suggestion = document.getElementById('aiSuggestion');
+
+    passwordInput.addEventListener('input', () => {
+      const pwd = passwordInput.value;
+      const strength = evaluatePassword(pwd);
+      feedback.textContent = `Password Strength: ${strength}`;
+      suggestion.textContent = aiSuggestion(pwd);
+    });
+  </script>
+</body>
+</html>
