@@ -1,2 +1,2 @@
 # AI-Powered-Password-Assistant
-My project is on AI-Powered Password Assistants smart tools which helps us to manage our digital security. That’s where AI comes in.  I have designed an AI-powered password assistant that uses artificial intelligence to help generate strong, unique passwords, manage them securely, and even detect threats in real time.
+In this video, I introduce an AI tool I've developed that generates passwords and assesses their strength. The tool not only helps create secure passwords but also protects against potential hacking attempts. I demonstrate how it works by generating a password and showing its strength ratings. I encourage you to explore this tool for better password security and consider its application in your own projects.
